@@ -95,66 +95,45 @@ Take a look at the `src/main.js` and `src/memory.js` starter file. You already h
 
 We will test our game logic using Jasmine (at this point you shold be **Jasmine Masters!**). Actually, for this game the game logic is pretty simple, we only going to need a `MemoryGame` constructor, and some methods to shuffle and compare cards, and one to check when the game finishes.
 
-- First things first: Create a `MemoryGame` constructor that will receive an array of cards as a parameter and set this array to a `this.cards` property. We also need a `this.pickedCards` array, where we will be storing the cards the user have clicked so we can compare them. Finally a `this.pairsClicked` and `this.pairsGuessed` properties where will be adding every time a user choose and guess a pair.
+#### `constructor`
+First things first: Create a `MemoryGame` constructor that will receive an array of cards as a parameter and set this array to a `this.cards` property. We also need a `this.pickedCards` array, where we will be storing the cards the user have clicked so we can compare them. Finally a `this.pairsClicked` and `this.pairsGuessed` properties where will be adding every time a user choose and guess a pair.
 
-- Create a method to shuffle the cards, so every time you create a new game, the order of the cards changes. You will only need to change the `cards` property from your object. **Hint:** It would be a good idea to implement something like a [Fisher-Yates Shuffle](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle). If you struggle on this function, you can skip for the moment and go back on it later.
+```js
+  constructor(cards) {
+    this.cards = cards;
+    // TODO: continue
+  }
+```
+
+#### `shuffleCards`
+Create a method to shuffle the cards, so every time you create a new game, the order of the cards changes. You will only need to change the `cards` property from your object. **Hint:** It would be a good idea to implement something like a [Fisher-Yates Shuffle](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle). If you struggle on this function, you can skip for the moment and go back on it later.
 
 ```javascript
-MemoryGame.prototype.shuffleCards = function() {
-};
+  shuffleCards() {}
 ```
-- When a user pick 2 cards, we will need to check if they are the same. Let's create a method `checkIfPair`, that will receive two parameters, the names of both cards selected by the user (example: `'ironman'` and `'batman'`). The method will add 1 to our `pairsClicked` property, and if the cards are the same also add 1 to `pairsGuessed`.
+
+#### `checkIfPair`
+When a user pick 2 cards, we will need to check if they are the same. Let's create a method `checkIfPair`, that will receive two parameters, the names of both cards selected by the user (example: `'ironman'` and `'batman'`). The method will add 1 to our `pairsClicked` property, and if the cards are the same also add 1 to `pairsGuessed`.
 
 Finally it will return `true` or `false` depending on the result of comparing both cards.
 
 ```javascript
-MemoryGame.prototype.checkIfPair = function(firstCard, secondCard) {
-
-};
+  checkIfPair(firstCard, secondCard) {}
 ```
 
-- As Memory doesn't have a 'Game Over', we just need a 'Win' function, where we need to check if our property `pairsGuessed` reach the numbers of pairs the game has.
+#### `isFinished`
+As Memory doesn't have a 'Game Over', we just need a 'Win' function, where we need to check if our property `pairsGuessed` reach the numbers of pairs the game has.
 
 ```javascript
-MemoryGame.prototype.isFinished = function() {
-};
+  isFinished() {}
 ```
 
 ### HTML/CSS Interactions
 
 Think about the interactions your user and the game will have: basically the user will click on elements of the page and receive a result - whether he guessed the pair or not.
 
-- The first thing we need to do is use the information to dynamically fill the tiles in the board element. As we want this behavior to be trigged as soon as the page loads, we need to wrap it under a `document.ready` method. Use jQuery to change the elements dynamically.
+For this, you will need to modify the method `render` from the file `memory.js`.
 
-```javascript
-$(document).ready(function(){
-});
-```
-
-- The other important interaction is the click listener. Remember to add the listeners when the document is loaded.
-
-```javascript
-$('.back').click(function(){
-});
-```
-
-To flip a card, there are different possibilities. One them is toggle the classes `front` and `back`, like in the following example:
-
-```html
-<!-- Only display the back that is blue -->
-<div class= "card" data-card-name="ironman">
-  <div class="back" name="ironman.jpg"></div>
-  <div class="front" style="background: url(img/ironman.jpg) no-repeat"></div>
-</div>
-
-<!-- After flipping (back and front are reverted) -->
-
-<!-- Only display the back that has a ironman backgroung image -->
-<div class= "card" data-card-name="ironman">
-  <div class="front" name="ironman.jpg"></div>
-  <div class="back" style="background: url(img/ironman.jpg) no-repeat"></div>
-</div
-```
 
 ## Summary
 
