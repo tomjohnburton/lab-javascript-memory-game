@@ -27,11 +27,11 @@ class MemoryGame {
 
   checkIfPair(firstCard, secondCard) {
     this.pairsClicked +=1;
+    $('#pairs_clicked').text(this.pairsClicked);
     if ( firstCard == secondCard){
-      this.pairsGuessed += 1
-      $('#pairs_guessed').text(this.pairsGuessed)
+      this.pairsGuessed += 1;
+      $('#pairs_guessed').text(this.pairsGuessed);
       return true;
-
     }
     else {
       
@@ -42,7 +42,8 @@ class MemoryGame {
 
   isFinished() {
     if (this.pairsGuessed === imgs.length){
-      return true
+      
+      return alert('You WON!!')
     }
     return false
  
@@ -75,6 +76,7 @@ class MemoryGame {
             if (this.pickedCards.length == 2){
 
             if( this.checkIfPair(this.pickedCards[0].img,this.pickedCards[1].img)==false){
+                
                 this.pickedCards[0].isVisible = false;
                 this.pickedCards[1].isVisible = false;
                 this.pickedCards = [];
@@ -82,8 +84,8 @@ class MemoryGame {
               
               this.pickedCards = [];
             }
-            
-      this.render();
+            this.render();
+            this.isFinished();
 
       console.log("C1",this.pickedCards[0]) 
       console.log("C2",this.pickedCards[1]) 
