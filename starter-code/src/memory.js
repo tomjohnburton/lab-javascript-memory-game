@@ -37,21 +37,23 @@ class MemoryGame {
       
       return false;
     }
-
-  }
-
-  isFinished() {
-    if (this.pairsGuessed === imgs.length){
-      
-      return alert('You WON!!')
-    }
-    return false
- 
     
   }
+  
+  isFinished() {
+    if (this.pairsGuessed === imgs.length){
+      $('#memory_board').html('<h1>GAME OVER</h1><br><h2>Pairs Guessed '+this.pairsGuessed+ '</h2><h2>Pairs Clicked '+this.pairsClicked+ '</h2>')
 
-
+    }
+    return false
+    
+    
+  }
+  
+  
   render() {
+
+
     var html = '';
 
     for (var i = 0; i < this.cards.length; i++) {
@@ -73,18 +75,27 @@ class MemoryGame {
             if (this.pickedCards.length !== 2){
               this.pickedCards.push(card1)
             }
+  
+
+
             if (this.pickedCards.length == 2){
 
-            if( this.checkIfPair(this.pickedCards[0].img,this.pickedCards[1].img)==false){
-                
-                this.pickedCards[0].isVisible = false;
-                this.pickedCards[1].isVisible = false;
-                this.pickedCards = [];
-              }
+            if( this.checkIfPair(this.pickedCards[0].img,this.pickedCards[1].img)==true){
               
               this.pickedCards = [];
-            }
-            this.render();
+
+            } else {
+              var that = this ;
+              setTimeout(function(){
+            that.pickedCards[0].isVisible = false;
+            that.pickedCards[1].isVisible = false;
+            that.pickedCards = [];
+            that.render();
+;
+          },1000)
+        }
+      }
+            this.render();  
             this.isFinished();
 
       console.log("C1",this.pickedCards[0]) 

@@ -19,8 +19,6 @@ var memoryGame;
 $(document).ready(function () {
   memoryGame = new MemoryGame(imgs);
   // memoryGame.shuffleCards();
-  // memoryGame.checkIfPair()
-
   memoryGame.render()
 });
 
